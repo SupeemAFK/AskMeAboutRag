@@ -4,6 +4,7 @@ from sentence_transformers import SentenceTransformer
 from pinecone import Pinecone
 from dotenv import load_dotenv
 import os
+from tqdm import tqdm
 
 load_dotenv()
 
@@ -42,7 +43,7 @@ def store_document_in_pinecone(document_id, pages, title, model):
     print(f"Stored {len(pages)} pages for document: {document_id}")
 
 def process_pdfs_in_folder(folder_path):
-    for i, filename in enumerate(os.listdir(folder_path)):
+    for i, filename in enumerate(tqdm(os.listdir(folder_path)[820:])):
         if filename.endswith('.pdf'):
             pdf_path = os.path.join(folder_path, filename)
             document_id = str(i+1)
@@ -56,3 +57,4 @@ def process_pdfs_in_folder(folder_path):
 
 folder_path = 'files' 
 process_pdfs_in_folder(folder_path)
+
