@@ -7,7 +7,7 @@ import os
 
 load_dotenv()
 
-pc = Pinecone(api_key=os.get('PINECONE_KEY'))
+pc = Pinecone(api_key=os.getenv('PINECONE_KEY'))
 index_name = "askmeaboutrag" 
 index = pc.Index(index_name)
 
