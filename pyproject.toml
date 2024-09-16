@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "askmeaboutrag"
+version = "0.1.0"
+description = "RAG model for asking about RAG"
+authors = ["microhum, Beamlnwza, SupeemAFK, GGital"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+langchain="0.2.14"
+langchain_community="0.2.12"
+langchain_groq= "*"
+langchain_huggingface = "*"
+langchain_openai= "*"
+langchain-pinecone= "*"
+pypdf= "*"
+fastapi= "*"
+gradio = "^4.44.0"
+python-dotenv = "^1.0.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

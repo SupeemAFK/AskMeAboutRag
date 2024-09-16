@@ -1,21 +1,19 @@
 from langchain_core.messages import AIMessage, HumanMessage
 from fastapi import FastAPI
-from langchain_pinecone import PineconeVectorStore
+from langchain_pinecone.vectorstores import Pinecone
 from pydantic import BaseModel
 from rag import Rag
 from retriever import AskMeAboutRagRetriever
-from pinecone import Pinecone
 from langchain_huggingface import HuggingFaceEmbeddings
 from dotenv import load_dotenv
 import os
 
 load_dotenv()
 
-pc = Pinecone(api_key=os.getenv('PINECONE_KEY'))
-index_name = "askmeaboutrag" 
-index = pc.Index(index_name)
+api_key=os.getenv('PINECONE_KEY')
+index_name="askmeaboutrag" 
 
-vectorstore = PineconeVectorStore(index=index, embedding=HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2"))
+vectorstore = Pinecone(pinecone_api_key=api_key, index_name=index_name, embedding=HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2"))
 retriever = AskMeAboutRagRetriever(vectorstore)
 rag_llm = Rag(vectorstore, retriever);
 

@@ -3,7 +3,7 @@ from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.prompts import MessagesPlaceholder
 from langchain.chains import create_history_aware_retriever
-from langchain_pinecone import PineconeVectorStore
+from langchain_pinecone.vectorstores import Pinecone
 from uuid import uuid4
 from langchain_groq import ChatGroq
 from langchain.schema.retriever import BaseRetriever
@@ -13,7 +13,7 @@ import os
 load_dotenv()
 
 class Rag:
-    def __init__(self, vectorstore: PineconeVectorStore, retriever: BaseRetriever):
+    def __init__(self, vectorstore: Pinecone, retriever: BaseRetriever):
         self.model = ChatGroq(
             model="llama-3.1-70b-versatile",
             temperature=0,

@@ -1,13 +1,13 @@
 from langchain.schema.retriever import BaseRetriever
 from langchain_core.callbacks import CallbackManagerForRetrieverRun
-from langchain_pinecone import PineconeVectorStore
+from langchain_pinecone.vectorstores import Pinecone
 from langchain.schema import Document
 from pydantic import PrivateAttr
 
 class AskMeAboutRagRetriever(BaseRetriever):
-    vectorstore: PineconeVectorStore = PrivateAttr()
+    vectorstore: Pinecone = PrivateAttr()
 
-    def __init__(self, vectorstore: PineconeVectorStore, **data):
+    def __init__(self, vectorstore: Pinecone, **data):
         super().__init__(**data)
         self.vectorstore = vectorstore
         
