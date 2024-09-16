@@ -2,7 +2,6 @@ FROM python:3.10-slim
 
 COPY ./requirements.txt /code/requirements.txt
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
-RUN apt-get install -y tesseract-ocr tesseract-ocr-tha ocrmypdf
 
 # Set home to the user's home directory
 RUN useradd -m -u 1000 user
